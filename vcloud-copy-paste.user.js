@@ -4,7 +4,7 @@
 // @version      v1.0.0
 // @description  Input text and convert to keystroke events! This is at most a proof of concept ATM
 // @author       adryd
-// @match        https://fast-vcloud.humber.ca/
+// @match        https://fast-vcloud.humber.ca/*
 // @grant        none
 // ==/UserScript==
 
@@ -36,9 +36,10 @@
     "0": [48, "Digit0", false],
     ")": [48, "Digit0", true],
     "-": [173, "Minus", false],
+    "–": [173, "Minus", false],
     "_": [173, "Minus", true],
-    "=": [61, "Equals", false],
-    "+": [61, "Equals", true],
+    "=": [61, "Equal", false],
+    "+": [61, "Equal", true],
     "q": [81, "KeyQ", false],
     "Q": [81, "KeyQ", true],
     "w": [87, "KeyW", false],
@@ -167,7 +168,7 @@
     for (let i of string) {
       console.log(i)
       for (let event of createEvents(i)) {
-        if (event == "sleep") {await sleep(100); continue}
+        if (event == "sleep") {await sleep(250); continue}
         targetElement.dispatchEvent(event)
         await sleep(10)
       }
